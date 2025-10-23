@@ -48,7 +48,7 @@ public class FieldCentricMecanumDrive extends LinearOpMode {
             // This button choice was made so that it is hard to hit on accident,
             // it can be freely changed based on preference.
             // The equivalent button is start on Xbox-style controllers.
-            if (gamepad1.options) {
+            if (gamepad1.ps) {
                 imu.resetYaw();
             }
 
@@ -73,6 +73,7 @@ public class FieldCentricMecanumDrive extends LinearOpMode {
             backLeftMotor.setPower(backLeftPower);
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
+
         }
     }
 }
