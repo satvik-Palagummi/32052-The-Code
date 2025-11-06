@@ -42,7 +42,7 @@ public class Nightcall {
         // Without this, the REV Hub's orientation is assumed to be logo up / USB forward
         imu.initialize(parameters);
     }
-    public void drive (double x, double y, double rx){
+    public void drive (double x, double y, double rx, boolean slow){
         YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
         double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
 
@@ -60,6 +60,14 @@ public class Nightcall {
         double backLeftPower = (rotY - rotX + rx) / denominator;
         double frontRightPower = (rotY - rotX - rx) / denominator;
         double backRightPower = (rotY + rotX - rx) / denominator;
+
+        if (slow) {
+
+            frontLeftPower = frontLeftPower/4;
+            frontRightPower = frontRightPower/4;
+            backLeftPower = backLeftPower/4;
+            backRightPower = backRightPower/4;
+        }
 
         frontLeftMotor.setPower(frontLeftPower);
         backLeftMotor.setPower(backLeftPower);
