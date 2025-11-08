@@ -18,7 +18,6 @@ public class Frankenstein extends LinearOpMode {
     private final Nightcall nightcall = new Nightcall();
     private final Turret turret = new Turret();
     private final Spinner spinner = new Spinner();
-    private final Ball ball = new Ball();
     private final PushServo pushServo = new PushServo();
     private ElapsedTime time = new ElapsedTime();
 
@@ -71,8 +70,10 @@ public class Frankenstein extends LinearOpMode {
             while(time.seconds() < 5){
 
             }
-            pushServo.retract(shootingPos);
             turret.stopOuttake();
+        }
+        if(gamepad1.right_bumper){
+            pushServo.retract(2);
         }
     }
     public void handleIntake(){
