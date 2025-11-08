@@ -2,9 +2,7 @@ package org.firstinspires.ftc.teamcode.Outtake;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp
 public class TurretLocalization {
     private Servo turret = null;
     private final double posZero = 0.0;
