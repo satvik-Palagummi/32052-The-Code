@@ -11,31 +11,18 @@ public class PushServo {
     private ElapsedTime time = new ElapsedTime();
 
     public void initPushServos(HardwareMap hweM){
-        push0 = hweM.get(Servo.class, "push1");
-        push1 = hweM.get(Servo.class, "push2");
-        push2 = hweM.get(Servo.class, "push3");
+        //push0 = hweM.get(Servo.class, "push0");
+        //push1 = hweM.get(Servo.class, "push1");
+        push2 = hweM.get(Servo.class, "push2");
     }
     public void propel(int servoNum){
-        if(servoNum == 0){
-            push0.setPosition(0.5);
-            while(time.seconds() < 0.5){
-
-            }
-            push0.setPosition(0.3);
-        }
-        if(servoNum == 1){
-            push1.setPosition(0.5);
-            while(time.seconds() < 0.5){
-
-            }
-            push1.setPosition(0.3);
-        }
         if(servoNum == 2){
-            push2.setPosition(0.5);
-            while(time.seconds() < 0.5){
-
-            }
-            push2.setPosition(0.3);
+            push2.setPosition(0.9);
+        }
+    }
+    public void retract(int servoNum) {
+        if (servoNum == 2) {
+            push2.setPosition(0);
         }
     }
 }

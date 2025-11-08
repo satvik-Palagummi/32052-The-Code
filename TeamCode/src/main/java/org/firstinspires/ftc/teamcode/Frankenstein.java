@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Intake.Ball;
 import org.firstinspires.ftc.teamcode.Intake.Spinner;
@@ -16,10 +17,10 @@ public class Frankenstein extends LinearOpMode {
 
     private final Nightcall nightcall = new Nightcall();
     private final Turret turret = new Turret();
-    private final TurretLocalization turretLocalization = new TurretLocalization();
     private final Spinner spinner = new Spinner();
     private final Ball ball = new Ball();
     private final PushServo pushServo = new PushServo();
+    private ElapsedTime time = new ElapsedTime();
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -30,7 +31,6 @@ public class Frankenstein extends LinearOpMode {
 
         while (opModeIsActive()) {
             handleDriving();
-            handleTurret();
             handleShooter();
             handleIntake();
             displayTelemetry();
@@ -40,7 +40,6 @@ public class Frankenstein extends LinearOpMode {
         nightcall.initialize(hardwareMap);
         spinner.initSpinner(hardwareMap);
         turret.initTurret(hardwareMap);
-        turretLocalization.initTurretLocalization(hardwareMap);
         pushServo.initPushServos(hardwareMap);
     }
 
@@ -63,32 +62,28 @@ public class Frankenstein extends LinearOpMode {
             nightcall.resetYaw();
         }
     }
-    public void handleTurret(){
-        if(gamepad1.right_bumper){
-            if(turretLocalization.getPosition() != 2){
-                turretLocalization.setPos(turretLocalization.getPosition()+1);
-            }
-        }
-        if(gamepad1.left_bumper){
-            if(turretLocalization.getPosition()!=0){
-                turretLocalization.setPos(turretLocalization.getPosition()-1);
-            }
-        }
-    }
+
     public void handleShooter(){
         if(gamepad1.right_trigger>0.1){
-            int shootingPos = turretLocalization.getPosition();
+            int shootingPos = 2;
             pushServo.propel(shootingPos);
             turret.startOuttake();
+            while(time.seconds() < 5){
+
+            }
+            pushServo.retract(shootingPos);
+            turret.stopOuttake();
         }
     }
     public void handleIntake(){
         if(gamepad1.square) {
             spinner.startIntake();
+        }else{
+            spinner.stopIntake();
         }
     }
     private void displayTelemetry() {
-        addTelemetry("Turret Position", turretLocalization.getPosition());
+        addTelemetry("Turret Position", 2);
         addTelemetry("Is Shooting", turret.getTurret());
         addTelemetry("Is Robot Intaking", spinner.getSpinner());
     }

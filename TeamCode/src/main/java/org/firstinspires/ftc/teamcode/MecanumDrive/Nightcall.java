@@ -7,7 +7,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
 public class Nightcall {
     private DcMotor frontLeftMotor;
@@ -32,6 +31,8 @@ public class Nightcall {
         // See the note about this earlier on this page.
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        backLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         // Retrieve the IMU from the hardware map
         IMU imu = hardwareMap.get(IMU.class, "imu");
@@ -43,7 +44,6 @@ public class Nightcall {
         imu.initialize(parameters);
     }
     public void drive (double x, double y, double rx, boolean slow){
-        YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
         double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
 
         // Rotate the movement direction counter to the bot's rotation
@@ -76,8 +76,5 @@ public class Nightcall {
     }
     public void resetYaw(){
         imu.resetYaw();
-    }
-    public double getRobotHeading() {
-        return imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
     }
 }
