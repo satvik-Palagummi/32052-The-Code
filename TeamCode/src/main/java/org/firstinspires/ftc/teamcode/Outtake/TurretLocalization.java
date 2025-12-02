@@ -15,11 +15,8 @@ public class TurretLocalization {
     public void setTurretPos(double pos){
         turret.setPosition(pos);
     }
-    public int getPosition(){
+    public double getTurretPos(){
         return position;
-    }
-    public double getTurret(){
-        return turret.getPosition();
     }
     public void setPos(int num){
         position = num;

@@ -17,12 +17,12 @@ public class PushServo {
     }
     public void propel(int servoNum){
         if(servoNum == 2){
-            push2.setPosition(0.9);
+            push2.setPosition(0);
         }
     }
     public void retract(int servoNum) {
         if (servoNum == 2) {
-            push2.setPosition(0);
+            push2.setPosition(0.9);
         }
     }
 }

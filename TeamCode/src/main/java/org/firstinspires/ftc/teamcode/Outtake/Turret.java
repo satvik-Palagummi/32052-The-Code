@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Turret {
-    final double speed = 0.8;
+    final double speed = 0.9;
     private DcMotor spinner;
     public void initTurret(HardwareMap hw) {
         spinner = hw.get(DcMotor.class, "Turret");

@@ -17,9 +17,12 @@ public class Frankenstein extends LinearOpMode {
 
     private final Nightcall nightcall = new Nightcall();
     private final Turret turret = new Turret();
+    private final TurretLocalization turretLocalization = new TurretLocalization();
     private final Spinner spinner = new Spinner();
     private final PushServo pushServo = new PushServo();
     private ElapsedTime time = new ElapsedTime();
+    private int shootingPos = 0;
+
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -32,6 +35,7 @@ public class Frankenstein extends LinearOpMode {
             handleDriving();
             handleShooter();
             handleIntake();
+            handleLocalization();
             displayTelemetry();
         }
     }
@@ -40,6 +44,7 @@ public class Frankenstein extends LinearOpMode {
         spinner.initSpinner(hardwareMap);
         turret.initTurret(hardwareMap);
         pushServo.initPushServos(hardwareMap);
+        turretLocalization.initTurretLocalization(hardwareMap);
     }
 
     public void handleDriving(){
@@ -64,16 +69,26 @@ public class Frankenstein extends LinearOpMode {
 
     public void handleShooter(){
         if(gamepad1.right_trigger>0.1){
-            int shootingPos = 2;
-            pushServo.propel(shootingPos);
             turret.startOuttake();
-            while(time.seconds() < 5){
-
-            }
+            while(time.seconds() < 2){}
+            pushServo.propel(shootingPos);
+        }else{
             turret.stopOuttake();
+            pushServo.retract(shootingPos);
         }
+    }
+    public void handleLocalization(){
         if(gamepad1.right_bumper){
-            pushServo.retract(2);
+            if(shootingPos != 2){
+                shootingPos++;
+                turretLocalization.setPos(shootingPos);
+            }
+        }
+        if(gamepad1.left_bumper){
+            if(shootingPos!=0){
+                shootingPos--;
+                turretLocalization.setPos(shootingPos);
+            }
         }
     }
     public void handleIntake(){
@@ -84,9 +99,10 @@ public class Frankenstein extends LinearOpMode {
         }
     }
     private void displayTelemetry() {
-        addTelemetry("Turret Position", 2);
+        addTelemetry("Turret Position", turretLocalization.getTurretPos());
         addTelemetry("Is Shooting", turret.getTurret());
         addTelemetry("Is Robot Intaking", spinner.getSpinner());
+
     }
     public void addTelemetry(String value, int position){
         telemetry.addData(value, position);
