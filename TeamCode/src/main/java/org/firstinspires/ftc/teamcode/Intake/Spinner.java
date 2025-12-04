@@ -7,19 +7,28 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Spinner {
     final double speed = 0.8;
-    private DcMotor spinner;
+    private DcMotor spinnerLeft;
+    private DcMotor spinnerRight;
     public void initSpinner(HardwareMap hMap) {
-        spinner = hMap.get(DcMotorEx.class, "spinner");
-        spinner.setDirection(DcMotor.Direction.FORWARD);
+        spinnerLeft = hMap.get(DcMotorEx.class, "spinnerLeft");
+        spinnerRight = hMap.get(DcMotorEx.class, "spinnerRight");
+        spinnerLeft.setDirection(DcMotor.Direction.FORWARD);
+        spinnerRight.setDirection(DcMotor.Direction.FORWARD);
     }
     public void startIntake(){
-        spinner.setPower(speed);
+        spinnerLeft.setPower(speed);
+        spinnerRight.setPower(speed);
     }
-    public double getSpinner(){
-        return spinner.getPower();
+    public double getSpinnerLeft(){
+        return spinnerLeft.getPower();
+
+    }
+    public double getSpinnerRight(){
+        return spinnerRight.getPower();
     }
     public void stopIntake(){
-        spinner.setPower(0);
+        spinnerLeft.setPower(0);
+        spinnerRight.setPower(0);
     }
 
 }
