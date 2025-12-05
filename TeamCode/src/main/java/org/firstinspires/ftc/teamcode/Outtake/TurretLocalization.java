@@ -28,7 +28,6 @@ public class TurretLocalization {
         }
         if(position == 2){
             setTurretPos(posTwo);
-        }else{
         }
     }
 
