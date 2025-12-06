@@ -69,11 +69,14 @@ public class Frankenstein extends LinearOpMode {
 
     public void handleShooter(){
         if(gamepad1.right_trigger>0.1){
-            turret.startOuttake();
             pushServo.propel(shootingPos);
         }else{
-            turret.stopOuttake();
             pushServo.retract(shootingPos);
+        }
+        if(gamepad1.right_bumper){
+            turret.startOuttake();
+        }else{
+            turret.stopOuttake();
         }
     }
     public void handleLocalization(){

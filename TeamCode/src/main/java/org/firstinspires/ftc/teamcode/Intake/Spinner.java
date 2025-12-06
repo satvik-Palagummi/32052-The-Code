@@ -16,7 +16,6 @@ public class Spinner {
         spinnerRight.setDirection(DcMotor.Direction.FORWARD);
     }
     public void startIntake(){
-        spinnerLeft.setPower(speed);
         spinnerRight.setPower(speed);
     }
     public double getSpinnerLeft(){
@@ -27,7 +26,6 @@ public class Spinner {
         return spinnerRight.getPower();
     }
     public void stopIntake(){
-        spinnerLeft.setPower(0);
         spinnerRight.setPower(0);
     }
 

@@ -17,20 +17,20 @@ public class PushServo {
     }
     public void propel(int servoNum){
         if(servoNum == 0){
-            push0.setPosition(0.7);
+            push0.setPosition(0.4);
         }else if(servoNum == 1){
-            push1.setPosition(1);
+            push1.setPosition(0.9);
         }else if(servoNum == 2){
-            push2.setPosition(0.6);
+            push2.setPosition(0.8);
         }
     }
     public void retract(int servoNum) {
         if(servoNum == 0){
-            push0.setPosition(0.6);
+            push0.setPosition(0.5);
         }else if(servoNum == 1){
-            push1.setPosition(0.6);
+            push1.setPosition(0.2);
         }else if(servoNum == 2){
-            push2.setPosition(0.68);
+            push2.setPosition(0.1);
         }
     }
 }
