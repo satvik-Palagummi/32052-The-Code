@@ -21,7 +21,7 @@ public class PushServo {
         }else if(servoNum == 1){
             push1.setPosition(0.8);
         }else if(servoNum == 2){
-            push2.setPosition(0.7);
+            push2.setPosition(0.6);
         }
     }
     public void retract(int servoNum) {
