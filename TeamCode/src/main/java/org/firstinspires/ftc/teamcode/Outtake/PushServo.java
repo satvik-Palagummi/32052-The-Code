@@ -19,18 +19,18 @@ public class PushServo {
         if(servoNum == 0){
             push0.setPosition(0.7);
         }else if(servoNum == 1){
-            push1.setPosition(0.8);
+            push1.setPosition(1);
         }else if(servoNum == 2){
             push2.setPosition(0.6);
         }
     }
     public void retract(int servoNum) {
         if(servoNum == 0){
-            push0.setPosition(0.3);
+            push0.setPosition(0.6);
         }else if(servoNum == 1){
-            push1.setPosition(0.3);
+            push1.setPosition(0.6);
         }else if(servoNum == 2){
-            push2.setPosition(0.9);
+            push2.setPosition(0.68);
         }
     }
 }
