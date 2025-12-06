@@ -79,16 +79,22 @@ public class Frankenstein extends LinearOpMode {
     }
     public void handleLocalization(){
         if(gamepad1.right_bumper){
-            if(shootingPos != 2){
-                shootingPos++;
-                turretLocalization.setPos(shootingPos);
+            if(shootingPos == 0){
+                shootingPos = 1;
+            }else if(shootingPos == 1){
+                shootingPos = 2;
             }
+            turretLocalization.setPos(shootingPos);
+            while(time.seconds()<0.5){}
         }
         if(gamepad1.left_bumper){
-            if(shootingPos!=0){
-                shootingPos--;
-                turretLocalization.setPos(shootingPos);
+            if(shootingPos == 2){
+                shootingPos = 1;
+            }else if(shootingPos == 1){
+                shootingPos = 0;
             }
+            turretLocalization.setPos(shootingPos);
+            while(time.seconds()<0.5){}
         }
     }
     public void handleIntake(){
