@@ -103,7 +103,7 @@ public class Frankenstein extends LinearOpMode {
         addTelemetry("Is Shooting", turret.getTurret());
         addTelemetry("Right Spinner Power: ", spinner.getSpinnerRight());
         addTelemetry("Left Spinner Power: ", spinner.getSpinnerLeft());
-
+        telemetry.update();
     }
     public void addTelemetry(String value, int position){
         telemetry.addData(value, position);
