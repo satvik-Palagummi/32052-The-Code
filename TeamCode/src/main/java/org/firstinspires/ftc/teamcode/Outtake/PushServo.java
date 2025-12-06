@@ -30,7 +30,7 @@ public class PushServo {
         }else if(servoNum == 1){
             push1.setPosition(0.3);
         }else if(servoNum == 2){
-            push2.setPosition(0.4);
+            push2.setPosition(0.9);
         }
     }
 }
